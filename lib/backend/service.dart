@@ -11,7 +11,6 @@ class Service {
 
   Service(this.onLoading, this.vsCurrency) {
     api = CoinGeckoApi();
-    print("object");
   }
 
   void setCurrency(String newVsCurrency) {
