@@ -1,6 +1,5 @@
 import 'package:coingecko_api/coingecko_api.dart';
 import 'package:coingecko_api/coingecko_result.dart';
-import 'package:coingecko_api/data/coin_short.dart';
 import 'package:coingecko_api/data/market.dart';
 import 'package:coingecko_api/data/market_chart_data.dart';
 
