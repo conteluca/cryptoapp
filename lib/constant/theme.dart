@@ -19,11 +19,11 @@ class LightTheme extends CustomTheme {
       colorScheme: lightColorScheme,
       useMaterial3: true,
       pageTransitionsTheme: kPageTransitionsTheme,
-      scaffoldBackgroundColor: lightColorScheme.background,
+      // scaffoldBackgroundColor: lightColorScheme.background,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      buttonTheme: Theme.of(context).buttonTheme.copyWith(
-            highlightColor: lightColorScheme.onPrimaryContainer,
-          ),
+      // buttonTheme: Theme.of(context).buttonTheme.copyWith(
+      //       highlightColor: lightColorScheme.onPrimaryContainer,
+      //     ),
     );
   }
 }
@@ -37,11 +37,12 @@ class DarkTheme extends CustomTheme {
       colorScheme: darkColorScheme,
       useMaterial3: true,
       pageTransitionsTheme: kPageTransitionsTheme,
-      scaffoldBackgroundColor: darkColorScheme.background,
+      // scaffoldBackgroundColor: darkColorScheme.background,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      buttonTheme: Theme.of(context).buttonTheme.copyWith(
-            highlightColor: darkColorScheme.onPrimaryContainer,
-          ),
+
+      // buttonTheme: Theme.of(context).buttonTheme.copyWith(
+      //       highlightColor: darkColorScheme.onPrimaryContainer,
+      //     ),
     );
   }
 }

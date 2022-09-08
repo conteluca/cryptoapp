@@ -23,13 +23,12 @@ class Discover extends StatefulWidget {
 
 class _DiscoverState extends State<Discover> {
   late Service _service;
-  String vsCurrency = "usd";
+  CurrencyData _currencyData = const CurrencyData();
   bool isLoading = false;
-  String currencySymbol = "\$";
 
   @override
   void initState() {
-    _service = Service(loadData, vsCurrency);
+    _service = Service(loadData, _currencyData.code);
     _service.getCoinList();
     super.initState();
   }
@@ -39,6 +38,8 @@ class _DiscoverState extends State<Discover> {
     return NestedScrollView(
       headerSliverBuilder: _buildHeader,
       body: RefreshIndicator(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        color: Theme.of(context).colorScheme.onPrimaryContainer,
         onRefresh: _onRefresh,
         child: isLoading
             ? const Center(child: CircularProgressIndicator())
@@ -50,10 +51,13 @@ class _DiscoverState extends State<Discover> {
                       transitionType: widget.transitionType,
                       closedBuilder: (context, action) => ListItem(
                         market: _service.market[index],
-                        toCurrencySymbol: currencySymbol,
+                        toCurrencySymbol: _currencyData.symbol,
                       ),
                       onClosed: (data) => print("closed"),
-                      child: CryptoDetails(market: _service.market[index]),
+                      child: CryptoDetails(
+                        market: _service.market[index],
+                        currencyData: _currencyData,
+                      ),
                     )),
       ),
     );
@@ -99,7 +103,7 @@ class _DiscoverState extends State<Discover> {
   }
 
   void search() =>
-      showSearch(context: context, delegate: MySearchDelegate(_service.market));
+      showSearch(context: context, delegate: MySearchDelegate(_service.market,_currencyData));
 
   void _showBottomModal() {
     showModalBottomSheet<void>(
@@ -112,8 +116,7 @@ class _DiscoverState extends State<Discover> {
 
   _changeCurrency(CurrencyData e) {
     setState(() {
-      vsCurrency = e.code;
-      currencySymbol = e.symbol;
+      _currencyData = e;
     });
     _service.setCurrency(e.code);
     _service.getCoinList();

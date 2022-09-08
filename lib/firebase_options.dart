@@ -43,40 +43,5 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCBohQIWHWwh4yFnkeENlnNuuomuhhh3Us',
-    appId: '1:710659845129:web:0b74e4a4e43f97678b5cd8',
-    messagingSenderId: '710659845129',
-    projectId: 'cryptoapp-ac2e0',
-    authDomain: 'cryptoapp-ac2e0.firebaseapp.com',
-    storageBucket: 'cryptoapp-ac2e0.appspot.com',
-  );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCWxViby7OE5yIqZ9x1DSXkzOi6mciaTZU',
-    appId: '1:710659845129:android:f99ccbcd9b5e4dcd8b5cd8',
-    messagingSenderId: '710659845129',
-    projectId: 'cryptoapp-ac2e0',
-    storageBucket: 'cryptoapp-ac2e0.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAuvj5fvTc8i6LORWcPzNy-uEvRqcdMFMY',
-    appId: '1:710659845129:ios:ab579850a1a2350c8b5cd8',
-    messagingSenderId: '710659845129',
-    projectId: 'cryptoapp-ac2e0',
-    storageBucket: 'cryptoapp-ac2e0.appspot.com',
-    iosClientId: '710659845129-nuhhmvm0tq5nsosrjlm1edo7cma02imf.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cryptoapp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAuvj5fvTc8i6LORWcPzNy-uEvRqcdMFMY',
-    appId: '1:710659845129:ios:ab579850a1a2350c8b5cd8',
-    messagingSenderId: '710659845129',
-    projectId: 'cryptoapp-ac2e0',
-    storageBucket: 'cryptoapp-ac2e0.appspot.com',
-    iosClientId: '710659845129-nuhhmvm0tq5nsosrjlm1edo7cma02imf.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cryptoapp',
-  );
 }

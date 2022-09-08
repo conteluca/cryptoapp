@@ -1,11 +1,14 @@
 import 'package:coingecko_api/data/market.dart';
 import 'package:cryptoapp/backend/service.dart';
+import 'package:cryptoapp/constant/data.dart';
 import 'package:flutter/material.dart';
 
-
 class CryptoDetails extends StatefulWidget {
-  const CryptoDetails({Key? key, required this.market}) : super(key: key);
+  const CryptoDetails(
+      {Key? key, required this.market, required this.currencyData})
+      : super(key: key);
   final Market market;
+  final CurrencyData currencyData;
 
   @override
   State<CryptoDetails> createState() => _CryptoDetailsState();
@@ -13,13 +16,13 @@ class CryptoDetails extends StatefulWidget {
 
 class _CryptoDetailsState extends State<CryptoDetails> {
   late Service _service;
+
   @override
   void initState() {
-    _service = Service(() { }, "usd");
+    _service = Service(() {}, widget.currencyData.code);
     _service.getMarketChart(widget.market.id);
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class _CryptoDetailsState extends State<CryptoDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${widget.market.currentPrice} \$",
+                    "${widget.market.currentPrice} ${widget.currencyData.symbol}",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coingecko_api/data/market.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,7 +19,9 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = market.priceChangePercentage24h! < 0 ? Colors.red : Colors.green;
+    var toStringAsFixed = market.currentPrice! < 1 ? 3 : 1;
+    var color =
+        market.priceChangePercentage24h! < 0 ? Colors.red : Colors.green;
     var icon = market.priceChangePercentage24h! < 0
         ? FaIcon(
             FontAwesomeIcons.arrowTrendDown,
@@ -31,19 +34,23 @@ class ListItem extends StatelessWidget {
             color: color,
           );
     return ListTile(
+      enableFeedback: true,
       dense: true,
+      visualDensity: VisualDensity.compact,
       onTap: onTap,
       title: Text(market.name, style: textStyle),
       subtitle: Text(market.symbol.toUpperCase()),
       leading: CircleAvatar(
         backgroundColor: Colors.white,
-        backgroundImage: NetworkImage(market.image!),
+        backgroundImage: CachedNetworkImageProvider(market.image!),
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text("${market.currentPrice.toString()} $toCurrencySymbol", style: textStyle),
+          Text(
+              "${market.currentPrice?.toStringAsFixed(toStringAsFixed)} $toCurrencySymbol",
+              style: textStyle),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [

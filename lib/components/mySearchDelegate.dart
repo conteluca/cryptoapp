@@ -5,6 +5,8 @@ import 'package:cryptoapp/components/listItem.dart';
 import 'package:cryptoapp/components/openContainerWrapper.dart';
 import 'package:flutter/material.dart';
 
+import '../constant/data.dart';
+
 class MySearchDelegate extends SearchDelegate {
   final ContainerTransitionType transitionType = ContainerTransitionType.fade;
 
@@ -61,16 +63,17 @@ class MySearchDelegate extends SearchDelegate {
           onClosed: (data) => print("closed"),
           child: CryptoDetails(
             market: suggestion,
+            currencyData: currencyData,
           ),
         );
       },
     );
   }
 
-  MySearchDelegate(this.markets);
+  MySearchDelegate(this.markets, this.currencyData);
 
   final List<Market> markets;
-
+  final CurrencyData currencyData;
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
