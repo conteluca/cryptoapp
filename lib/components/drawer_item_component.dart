@@ -32,10 +32,10 @@ class DrawerItemComponent extends StatelessWidget {
       selected: isSelected,
       onTap: () => onTap(index),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(48.0),
       ),
-      selectedTileColor: Theme.of(context).colorScheme.tertiary,
-      selectedColor: Theme.of(context).colorScheme.onTertiary,
+      selectedTileColor: Theme.of(context).colorScheme.secondary,
+      selectedColor: Theme.of(context).colorScheme.onSecondary,
     );
   }
 }

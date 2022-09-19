@@ -5,7 +5,7 @@ class ScrollToHideWidget extends StatelessWidget {
     Key? key,
     required this.child,
     required this.isVisible,
-    this.duration = const Duration(milliseconds: 500),
+    this.duration = const Duration(milliseconds: 400),
   }) : super(key: key);
   final Duration duration;
   final Widget child;
@@ -14,7 +14,7 @@ class ScrollToHideWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AnimatedContainer(
         duration: duration,
-        height: isVisible ? const NavigationBarThemeData().height : 0,
+        height: isVisible ? 80.0 : 0,
         child: Wrap(
           children: [child],
         ),

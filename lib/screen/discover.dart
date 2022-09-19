@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:coingecko_api/data/market.dart';
 import 'package:cryptoapp/components/openContainerWrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,8 +39,14 @@ class _DiscoverState extends State<Discover> {
     return NestedScrollView(
       headerSliverBuilder: _buildHeader,
       body: RefreshIndicator(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .primaryContainer,
+        color: Theme
+            .of(context)
+            .colorScheme
+            .onPrimaryContainer,
         onRefresh: _onRefresh,
         child: isLoading
             ? const Center(child: CircularProgressIndicator())
@@ -47,12 +54,14 @@ class _DiscoverState extends State<Discover> {
                 padding: EdgeInsets.zero,
                 itemCount: _service.market.length,
                 controller: widget.controller,
-                itemBuilder: (context, index) => OpenContainerWrapper(
+                itemBuilder: (context, index) =>
+                    OpenContainerWrapper(
                       transitionType: widget.transitionType,
-                      closedBuilder: (context, action) => ListItem(
-                        market: _service.market[index],
-                        toCurrencySymbol: _currencyData.symbol,
-                      ),
+                      closedBuilder: (context, action) =>
+                          ListItem(
+                            market: _service.market[index],
+                            toCurrencySymbol: _currencyData.symbol,
+                          ),
                       onClosed: (data) => print("closed"),
                       child: CryptoDetails(
                         market: _service.market[index],
@@ -63,7 +72,8 @@ class _DiscoverState extends State<Discover> {
     );
   }
 
-  List<Widget> _buildHeader(context, innerBoxIsScrolled) => [
+  List<Widget> _buildHeader(context, innerBoxIsScrolled) =>
+      [
         SliverAppBar(
           forceElevated: innerBoxIsScrolled,
           title: const Text("Discover"),
@@ -103,14 +113,17 @@ class _DiscoverState extends State<Discover> {
   }
 
   void search() =>
-      showSearch(context: context, delegate: MySearchDelegate(_service.market,_currencyData));
+      showSearch(
+          context: context,
+          delegate: MySearchDelegate(_service.market, _currencyData));
 
   void _showBottomModal() {
     showModalBottomSheet<void>(
       context: context,
-      builder: (BuildContext context) => CurrencyItemSheet(
-        onPressed: _changeCurrency,
-      ),
+      builder: (BuildContext context) =>
+          CurrencyItemSheet(
+            onPressed: _changeCurrency,
+          ),
     );
   }
 
@@ -134,15 +147,57 @@ class CurrencyItemSheet extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: kCurrencies
-          .map((CurrencyData e) => TextButton.icon(
-                onPressed: () => onPressed(e),
-                icon: e.icon,
-                label: Text(
-                  e.code.toUpperCase(),
-                  textScaleFactor: 1.2,
-                ),
-              ))
+          .map((CurrencyData e) =>
+          TextButton.icon(
+            onPressed: () => onPressed(e),
+            icon: e.icon,
+            label: Text(
+              e.code.toUpperCase(),
+              textScaleFactor: 1.2,
+            ),
+          ))
           .toList(),
     );
   }
 }
+
+class HorizontalItem extends StatelessWidget {
+  const HorizontalItem(
+      {Key? key, required this.market, required this.toCurrencySymbol})
+      : super(key: key);
+  final Market market;
+  final String toCurrencySymbol;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.0),
+        color: Theme
+            .of(context)
+            .colorScheme
+            .background,
+      ),
+      child: Text(market.name),
+    );
+  }
+}
+// ListView.builder(
+// scrollDirection: Axis.horizontal,
+// itemBuilder: (context, index) =>
+// OpenContainerWrapper(
+// transitionType: widget.transitionType,
+// closedBuilder: (context, action) =>
+// HorizontalItem(
+// market: _service.market[index],
+// toCurrencySymbol: _currencyData.symbol,
+// ),
+// onClosed: (data) => {},
+// child: CryptoDetails(
+// market: _service.market[index],
+// currencyData: _currencyData,
+// ),
+// ),
+// ),

@@ -24,7 +24,7 @@ class Latest extends StatefulWidget {
 class _LatestState extends State<Latest> {
   bool _showBalance = true;
   final double _balance = 12368.89;
-
+  FloatingActionButton get getFloatingActionButton => FloatingActionButton(onPressed: (){},);
   _changeShowBalance() {
     setState(() {
       _showBalance = !_showBalance;
